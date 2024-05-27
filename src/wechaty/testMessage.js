@@ -1,5 +1,6 @@
 import { getGptReply } from '../openai/index.js'
 import { getKimiReply } from '../kimi/index.js'
+import { getLocalReply } from '../local/index.js'
 import { getXunfeiReply } from '../xunfei/index.js'
 import dotenv from 'dotenv'
 import inquirer from 'inquirer'
@@ -25,6 +26,14 @@ async function handleRequest(type) {
       }
       console.log('❌ 请先配置.env文件中的 KIMI_API_KEY')
       break
+    case 'local':
+        if (env.LOCAL_API_KEY) {
+          const message = await getLocalReply("你好!")
+          console.log('🌸🌸🌸 / reply: ', message)
+          return
+        }
+        console.log('❌ 请先配置.env文件中的 KIMI_API_KEY')
+        break
     case 'Xunfei':
       if (env.XUNFEI_APP_ID && env.XUNFEI_API_KEY && env.XUNFEI_API_SECRET) {
         const message = await getXunfeiReply("你好!")
@@ -42,6 +51,7 @@ const serveList = [
   { name: 'ChatGPT', value: 'ChatGPT' },
   { name: 'Kimi', value: 'Kimi' },
   { name: 'Xunfei', value: 'Xunfei' },
+  { name: 'LM-Studio', value: 'local' },
   // ... 欢迎大家接入更多的服务
 ]
 const questions = [

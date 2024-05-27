@@ -129,6 +129,10 @@ function handleStart(type) {
       if (env.KIMI_API_KEY) return botStart()
       console.log('❌ 请先配置.env文件中的 KIMI_API_KEY')
       break
+    case 'local':
+          if (env.LOCAL_API_KEY) return botStart()
+          console.log('❌ 请先配置.env文件中的 LOCAL_API_KEY')
+          break
     case 'Xunfei':
       if (env.XUNFEI_APP_ID && env.XUNFEI_API_KEY && env.XUNFEI_API_SECRET) {
         return botStart()
@@ -144,6 +148,7 @@ const serveList = [
   { name: 'ChatGPT', value: 'ChatGPT' },
   { name: 'Kimi', value: 'Kimi' },
   { name: 'Xunfei', value: 'Xunfei' },
+  { name: 'LM-Studio', value: 'local' },
   // ... 欢迎大家接入更多的服务
 ]
 const questions = [

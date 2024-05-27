@@ -1,6 +1,7 @@
 import { getGptReply } from '../openai/index.js'
 import { getKimiReply } from '../kimi/index.js'
 import { getXunfeiReply } from '../xunfei/index.js'
+import { getLocalReply } from '../local/index.js'
 
 
 /**
@@ -14,6 +15,8 @@ export function getServe(serviceType) {
       return getGptReply
     case 'Kimi':
       return getKimiReply
+    case 'local':
+        return getLocalReply
     case 'Xunfei':
       return getXunfeiReply
     default:
